@@ -261,7 +261,32 @@ class superCar extends vehicle {
 const Veiron = new superCar('Bugati', 20, '300km/h', 'v8');
 console.log(Veiron);
 Veiron.showBrand();
+console.log('hello');
 
 
 //------------------------------------------------------------------------------------------
 
+//Decorators
+
+// constructor Decorator
+function BaseParameters() {
+    return function <T extends { new(...args: any[]): {} }>(constructor: T) {
+        return class extends constructor {
+            id = Math.random();
+            createdAt = new Date();
+        }
+    }
+}
+
+@BaseParameters()
+class person {
+    name;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+}
+
+const sam = new person('Sam');
+
+console.log(sam);
